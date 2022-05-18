@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+        <form>
+            <label id="noteLabel">Note Name:</label>
+            <input type="text" id="noteName"></br>
+        </form>
+            <button id="submitButton" onclick="submitNote()">Submit</button>
+            <button id="getNoteButton" onclick="loadNote()">Load Note</button>
+            <button id="getAllNotesButton" onclick="allNotes()">Load All</button>
+        <br><br>
+
+
+
+
+        <div>
+        <label id="curNoteName">Current Note</label> </br>
+        
+        <textarea id="noteEditor" rows="10" cols="50"></textarea>
+        </div>
+
+
+
+        <script src="app.js" async defer></script>
+</body>
+</html>
