@@ -24,9 +24,16 @@ const server = http.createServer(function(req, res){
 
     } else if (req.url === '/load' && req.method === 'GET'){
 
-        controllers.loadNote(req, res);
+        // Need to use regex here to match a URL query and 
+        // pass that to the controller function
+        controllers.loadNote(req, res, id);
 
-    } else if (req.url === '/loadall' && req.method === 'GET'){
+    } else if (req.url.match = && req.method === 'GET'){
+        
+    } 
+    
+    
+    else if (req.url === '/loadall' && req.method === 'GET'){
         // Testing JSON read functionality.
         controllers.loadAll(req, res);
     }

@@ -10,6 +10,8 @@ Controllers for manual routes in app.js
 */
 
 
+const models = require('./models.js');
+
 const fs = require('fs');
 const html_file = fs.readFileSync('index.html');
 const js = fs.readFileSync('app.js');
@@ -43,7 +45,7 @@ async function submitNote(req, res){
 }
 
 async function loadNote(req, res){
-    console.log("Successful GET request");
+
     res.setHeader('Content-Type', 'text/plain')
     res.writeHead(200);
     res.write("Responding to GET request");
@@ -53,12 +55,14 @@ async function loadNote(req, res){
 // Belongs in model 
 async function loadAll(req, res){
 
-    notes_json = JSON.parse(json_file);
+    //notes_json = JSON.parse(json_file);
+
+    let test1 = models.getAllNotes()
 
     console.log("Hitting loadall");
     res.setHeader('Content-Type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify(notes_json));
+    res.end(JSON.stringify(test1))
 
 }
 
