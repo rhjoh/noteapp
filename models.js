@@ -13,12 +13,28 @@ const jsonMain = fs.readFileSync('notesdb.json');
 let notes_json = JSON.parse(jsonMain);
 
 
-function saveNote(){
+function submitNote(submitObject){
+
+    console.log(submitObject)
+
+    // Load JS file into array(?)
+    // Append new object to array
+    // Write array to file 
+    console.log(typeof(jsonMain));
+    console.log(typeof(notes_json))
+    let array = notes_json.values
+    console.log(array)
+
 
 }
 
-function getNoteByID(){
+function getNoteByTitle(finalString){
 
+    console.log(finalString)
+    let responseString = notes_json.filter(function(myvar){
+        return myvar.title === finalString;
+    })
+    return responseString;
 }
 
 function deleteNote(){
@@ -32,5 +48,7 @@ function getAllNotes(){
 
 
 module.exports = {
-    getAllNotes
+    getAllNotes,
+    getNoteByTitle,
+    submitNote
 }

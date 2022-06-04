@@ -8,15 +8,23 @@ const getAllButton = document.querySelector('loadAllNotesButton')
 
 
 function submitNote(){
-    console.log("Submit note works")
-    console.log(noteName.value);
-    console.log(noteEditor.value);
     
+    const noteName = (document.getElementById('noteName')).value
+    const noteBody = (document.getElementById('noteEditor')).value
+
+    const savedNote = {
+        'title': noteName,
+        'message': noteBody
+    }
+
     const http = new XMLHttpRequest();
     const url = '/submit';
     http.open('POST', url, true);
-    http.setRequestHeader('Content-Type', 'text/plain')
-    http.send(noteName.value);
+    http.setRequestHeader('Content-Type', 'application/json')
+    http.send(JSON.stringify(savedNote));
+
+
+
 }
 
 function loadNote(){
@@ -24,20 +32,12 @@ function loadNote(){
 
     const http = new XMLHttpRequest();
 
-    //const curTitle = example1.value;
-    const curTitle = document.getElementById('noteName').value;
+    const curTitle = (document.getElementById('noteName').value).replace(/\s/, '');
+    // Strip white space. 
+    // TODO: Apply same to save/submit new note function. 
     const url = '/load' + '?' + curTitle;
     http.open('GET', url);
     http.setRequestHeader('Content-Type', 'text/plain');
-
-    http.onreadystatechange = function(){
-        if (this.readyState = 4){
-            console.log(http.response);
-            //console.log(http.responseText);
-        }
-    }
-
-
     http.send();
 }
 

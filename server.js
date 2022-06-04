@@ -22,14 +22,11 @@ const server = http.createServer(function(req, res){
 
         controllers.submitNote(req, res);
 
-    } else if (req.url === '/load' && req.method === 'GET'){
+    } else if (req.url.match(/\/load\?[a-z]*/) && req.method === 'GET'){
 
-        // Need to use regex here to match a URL query and 
-        // pass that to the controller function
-        controllers.loadNote(req, res, id);
-
-    } else if (req.url.match = && req.method === 'GET'){
-        
+        // Match all characters after the "?"
+        let titleString = req.url.match(/\?(.*)/)
+        controllers.loadNote(req, res, titleString)
     } 
     
     

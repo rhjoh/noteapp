@@ -1,26 +1,26 @@
-[
+    [
     {
         "id": "1",
-        "title": "Note 1",
+        "title": "Note1",
         "message": "First note"
     },
 
     {
         "id": "2",
-        "title": "Note 2",
+        "title": "Note2",
         "message": "Second note"
     },
 
     {
         "id": "3",
-        "title": "Note 3",
+        "title": "Note3",
         "message": "This is the 3rd note"
 
     },
 
     {
         "id": "4",
-        "title": "Note 4",
+        "title": "Note4",
         "message": "This is the 4th note"
     }
 

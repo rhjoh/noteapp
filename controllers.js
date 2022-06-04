@@ -13,6 +13,7 @@ Controllers for manual routes in app.js
 const models = require('./models.js');
 
 const fs = require('fs');
+const { title } = require('process');
 const html_file = fs.readFileSync('index.html');
 const js = fs.readFileSync('app.js');
 
@@ -37,18 +38,29 @@ async function getApp(req, res){
 }
 
 async function submitNote(req, res){
-    // console.log(req.headers);
 
     req.on('data', function(mydata){
-        console.log(mydata.toString());
+        
+        submitObject = JSON.parse(mydata)
+        models.submitNote(submitObject)
+
     })
 }
 
-async function loadNote(req, res){
+async function loadNote(req, res, titleString){
 
-    res.setHeader('Content-Type', 'text/plain')
+    // titleString is a regex object, groups have no property name.
+    // Our match is the second group. Anonymous object param? 
+
+    let finalString = String(titleString[1])
+
+    let final_obj = JSON.stringify(models.getNoteByTitle(finalString))
+    console.log(final_obj)
+    res.setHeader('Content-Type', 'application/json')
     res.writeHead(200);
-    res.write("Responding to GET request");
+    //res.write(finalString)
+    res.write(final_obj)
+
     res.end();
 }
 
