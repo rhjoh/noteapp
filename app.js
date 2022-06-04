@@ -27,18 +27,28 @@ function submitNote(){
 
 }
 
-function loadNote(){
-    console.log("LoadNote Button pressed")
+async function loadNote(){
 
     const http = new XMLHttpRequest();
 
     const curTitle = (document.getElementById('noteName').value).replace(/\s/, '');
     // Strip white space. 
     // TODO: Apply same to save/submit new note function. 
-    const url = '/load' + '?' + curTitle;
-    http.open('GET', url);
-    http.setRequestHeader('Content-Type', 'text/plain');
+    const url = '/load?' + curTitle;
+    
+
+    
+    http.open('GET', url, false);
+    //http.open('GET', '/load?Note1', false);
+    http.setRequestHeader('Content-Type', 'application/json');
+
     http.send();
+    // http.onreadystatechange doesn't work here. Why?
+    let resObject = JSON.parse(http.response);
+    // resObject has an index despite the JSON string only having one object
+
+    const noteBody = (document.getElementById('noteEditor'))
+    noteBody.innerText = resObject[0].message
 }
 
 

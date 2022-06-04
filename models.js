@@ -30,7 +30,7 @@ function submitNote(submitObject){
 
 function getNoteByTitle(finalString){
 
-    console.log(finalString)
+    //console.log(finalString)
     let responseString = notes_json.filter(function(myvar){
         return myvar.title === finalString;
     })
