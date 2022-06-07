@@ -1,3 +1,5 @@
+const utilFunc = require('./utils.js');
+
 /* 
 
 Modesl required:
@@ -16,6 +18,7 @@ let notes_json = JSON.parse(jsonMain);
 function submitNote(submitObject){
 
     let highestID;
+<<<<<<< HEAD
 
     // Find highest ID of all objects. Use that +1 for next obj.
     for(var i=0; i < notes_json.length; i++){
@@ -30,6 +33,22 @@ function submitNote(submitObject){
     console.log(newIDval)
     console.log(submitObject)
 
+=======
+
+    // Find highest ID of all objects. Use that +1 for next obj.
+    for(var i=0; i < notes_json.length; i++){
+        let idValue = notes_json[i].id
+
+        if(idValue > 0){
+            highestID = idValue;
+        }
+    }
+    let newIDval = Number(highestID) + Number(1);
+    console.log("New highest ID will be: ")
+    console.log(newIDval)
+    console.log(submitObject)
+
+>>>>>>> 3e882e1973e4d06dab6cb3ef63e417ac6c61ded9
     let newObject = {
         'id': String(newIDval),
         'title': submitObject.title,
