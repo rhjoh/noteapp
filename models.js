@@ -15,22 +15,36 @@ let notes_json = JSON.parse(jsonMain);
 
 function submitNote(submitObject){
 
+    let highestID;
+
+    // Find highest ID of all objects. Use that +1 for next obj.
+    for(var i=0; i < notes_json.length; i++){
+        let idValue = notes_json[i].id
+
+        if(idValue > 0){
+            highestID = idValue;
+        }
+    }
+    let newIDval = Number(highestID) + Number(1);
+    console.log("New highest ID will be: ")
+    console.log(newIDval)
     console.log(submitObject)
 
-    // Load JS file into array(?)
-    // Append new object to array
-    // Write array to file 
-    console.log(typeof(jsonMain));
-    console.log(typeof(notes_json))
-    let array = notes_json.values
-    console.log(array)
-
-
+    let newObject = {
+        'id': String(newIDval),
+        'title': submitObject.title,
+        'message': submitObject.message
+    }
+    notes_json.push(newObject);
+    let finalString = JSON.stringify(notes_json)
+    fs.writeFileSync('notesdb.json', finalString, function(){
+        console.log("Error writing file");
+        console.log(err)
+    })
 }
 
 function getNoteByTitle(finalString){
 
-    //console.log(finalString)
     let responseString = notes_json.filter(function(myvar){
         return myvar.title === finalString;
     })
