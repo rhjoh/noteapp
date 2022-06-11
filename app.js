@@ -1,5 +1,4 @@
 const { Http2ServerResponse } = require("http2")
-const { title } = require("process")
 
 let noteName = document.querySelector('noteName')
 let noteEditor = document.querySelector('noteEditor')
@@ -65,27 +64,30 @@ function allNotes(){
             let noteList = document.getElementById('noteList');
             
             for(c = 0; c < returnedJson.length; c++){
-                //listOfNotes.appendChild(createListItems(returnedJson[c].title))
                 let newElement = document.createElement('li')
                 let baseUrl = "load?"
-                //newAnchor.setAttribute('href', 'http://msn.com')
                 newElement.innerHTML = '<a href=' + baseUrl + returnedJson[c].title + '>' + returnedJson[c].title + '</a>'
+                newElement.addEventListener('onclick', function(e){
+                    e.preventDefault();
+                })
                 noteList.appendChild(newElement)
 
+                // Use this to replace default event with populating the DOM 
+                document.addEventListener('click', (e) => { 
+                    if (e.target.matches('a')){
+                      e.preventDefault();
+                    }
+                  })
             }
 
         }
     }
-
+    
     http.send()
+    
 }
 
-/* function createListItems(title_name){
-    let p = document.createElement('li')
-    p.innerText = title_name
-    return p;
-}
- */
 submitButton.addEventListener("click", submitNote)
 getNoteButton.addEventListener('click', loadNote)
 getAllButton.addEventListener('click', allNotes);
+
